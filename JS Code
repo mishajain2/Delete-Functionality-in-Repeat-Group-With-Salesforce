@@ -1,0 +1,21 @@
+Add this function outside repeat group
+
+
+function delete_sfdc_record(e,t,n){function o(e,t){new Lawnchair({name:e,adapter:localStorage.getItem("f_db_adapter")},function(e){e.all(function(n){n.every(function(n){return n.Id!=t||(e.remove(n.key),!1)})})})}function a(e,t){new Lawnchair({name:e,adapter:localStorage.getItem("f_db_adapter")},function(e){e.all(function(n){n.every(function(n){return n.Id!=t||(e.remove(n.key),!1)})})})}$("#component-"+e+" .before_delete").length||($("#component-"+e+"  .delete").addClass("hide"),$("#component-"+e+"  .panel-body").append('<a class="btn btn-danger btn-block before_delete">Delete</a>'),JSON.parse(localStorage.getItem("sfdc_delete_request_queue"))||localStorage.setItem("sfdc_delete_request_queue",JSON.stringify({})),$("#component-"+e+"  .before_delete").on("click",function(l){var d=$(this).parent(".panel-body").find(".delete").attr("data-item_index"),r=window.formyoula.form_fields[t+d],c=window.formyoula.form_fields[e];r&&c&&($(this).parent(".panel-body").find(".delete").click(),a("offline_lookup_"+c.get("component_id").replace(/-/g,"")+"_temp_"+n,r.value),o("offline_lookup_"+c.get("sfdc_auto_fill_id")+"_temp_"+n,r.value),window.formyoula.sfdc.del(c.get("object_api_name"),r.value,function(e){},function(e){var t=JSON.parse(localStorage.getItem("sfdc_delete_request_queue"));t[r.value]={record_id:r.value,object_api_name:c.get("object_api_name")},localStorage.setItem("sfdc_delete_request_queue",JSON.stringify(t))}))}))}
+
+
+
+
+Add this inside repeat group
+
+
+//Add a javascript element inside  repat group with following code
+//Pass repeat_group_component_id, sub_component_id, template_id)
+delete_sfdc_record("f7e2-c61c-8a3a","2f41-ae0f-bb13", "59d47d13b6aeac0015f167b5");
+
+2148-418d-aaba,{{8700-ddbc-b0e3}}, 5a4b71aaa18b850012060a37
+
+
+//Add a javascript element inside  repat group with following code
+//Pass repeat_group_component_id, sub_component_id, template_id)
+delete_sfdc_record("2148-418d-aaba","8700-ddbc-b0e3", "5a4b71aaa18b850012060a37");
